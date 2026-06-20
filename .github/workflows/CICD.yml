@@ -40,6 +40,10 @@ jobs:
     permissions:
       id-token: write
 
+    env:
+      AWS_REGION: eu-central-1
+      LAMBDA_NAME: calculator-app
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -55,18 +59,21 @@ jobs:
           cp app/calculator.py lambda_function.py
           zip function.zip lambda_function.py
 
-      - name: Create function
+      - name: Create or update Lambda
         run: |
-          aws lambda create-function \
-            --function-name Calculator-app \
-            --role arn:aws:iam::770762663048:role/service-role/Calculator-app-role-jip0t845 \
-            --runtime python3.12\
-            --handler calculator.lambda_handler \
-            --zip-file fileb://function.zip
+          if aws lambda get-function --function-name  ${{ env.LAMBDA_NAME }} >/dev/null 2>&1 ; then
 
-      - name: Update Lambda function code
-        run: |
-          aws lambda update-function-code \
-            --function-name arn:aws:lambda:us-east-1:770762663048:function:Calculator-app \
-            --zip-file fileb://function.zip
-            
+            aws lambda update-function-code \
+              --function-name ${{ env.LAMBDA_NAME }} \
+              --zip-file fileb://function.zip
+
+          else
+
+            aws lambda create-function \
+              --function-name ${{ env.LAMBDA_NAME }} \
+              --zip-file fileb://function.zip \
+              --role arn:aws:iam::350469506175:role/service-role/calculator-app-role-7swjqypm \
+              --handler calculator.lambda_handler \
+              --runtime python3.13
+
+          fi
