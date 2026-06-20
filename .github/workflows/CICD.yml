@@ -50,12 +50,18 @@ jobs:
             role-to-assume: arn:aws:iam::770762663048:role/GH_CICD
             aws-region: us-east-1
 
+      - name: Zip Lambda function code
+        run: |
+          cp app/calculator.py lambda_function.py
+          zip function.zip lambda_function.py
+
       - name: Create function
         run: |
           aws lambda create-function \
             --function-name Calculator-app \
             --role arn:aws:iam::770762663048:role/GH_CICD \
             --runtime python3.12
+            --code function.zip
 
       - name: Zip Lambda function code
         run: |
