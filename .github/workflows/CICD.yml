@@ -49,7 +49,7 @@ jobs:
 
       - name: Zip Lambda function code
         run: |
-          zip -r calc.zip calculator.py
+          zip -r calc.zip app/calculator.py
 
       - name: Update Lambda function code
         run: |
