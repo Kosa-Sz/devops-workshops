@@ -52,7 +52,7 @@ jobs:
 
       - name: Create function
         run: |
-          aws create-functionn \
+          aws create-function \
             --function-name Calculator-app \
             --role arn:aws:iam::770762663048:role/GH_CICD \
             --runtime python3.12
