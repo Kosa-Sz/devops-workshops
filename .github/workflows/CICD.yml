@@ -43,7 +43,7 @@ jobs:
     env:
       AWS_REGION: eu-central-1
       LAMBDA_NAME: calculator-app
-      
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -72,7 +72,7 @@ jobs:
             aws lambda create-function \
               --function-name ${{ env.LAMBDA_NAME }} \
               --zip-file fileb://function.zip \
-              --role arn:aws:iam::350469506175:role/service-role/calculator-app-role-7swjqypm \
+              --role arn:aws:iam::770762663048:role/service-role/Calculator-app-role-jip0t845 \
               --handler calculator.lambda_handler \
               --runtime python3.13
 
