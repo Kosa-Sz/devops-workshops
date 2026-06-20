@@ -46,7 +46,4 @@ jobs:
         with:
             role-to-assume: arn:aws:iam::770762663048:role/GH_CICD
             aws-region: eu-central-1
-
-
-
-
+            
