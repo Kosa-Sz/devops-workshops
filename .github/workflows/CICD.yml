@@ -25,3 +25,6 @@ jobs:
 
       - name: Run Python script
         run: pytest
+
+      - name: Add formating
+        run: flake8 .
