@@ -52,11 +52,12 @@ jobs:
 
       - name: Zip Lambda function code
         run: |
-          zip -r calc.zip app/calculator.py
+          cp app/calculator.py lambda_function.py
+          zip function.zip lambda_function.py
 
       - name: Update Lambda function code
         run: |
           aws lambda update-function-code \
             --function-name calculator-app \
-            --zip-file fileb://calc.zip
+            --zip-file fileb://lambda_function.zip
             --region us-east-1
