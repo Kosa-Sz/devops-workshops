@@ -59,7 +59,7 @@ jobs:
         run: |
           aws lambda create-function \
             --function-name Calculator-app \
-            --role arn:aws:iam::770762663048:role/GH_CICD \
+            --role arn:aws:iam::770762663048:role/service-role/Calculator-app-role-jip0t845 \
             --runtime python3.12\
             --handler calculator.lambda_handler \
             --zip-file fileb://function.zip
