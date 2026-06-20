@@ -19,4 +19,4 @@ jobs:
           python -m pip install --upgrade pip
 
       - name: Run Python script
-        run: python ./tests/test_calculator.py
+        run: python tests/test_calculator.py
