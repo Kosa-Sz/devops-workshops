@@ -74,7 +74,7 @@ jobs:
               --function-name ${{ env.LAMBDA_NAME }} \
               --zip-file fileb://function.zip \
               --role arn:aws:iam::770762663048:role/service-role/Calculator-app-role-jip0t845 \
-              --handler calculator.lambda_handler \
+              --handler lambda_function.lambda_handler \
               --runtime python3.13
                 echo "Lambda Created!"
 
