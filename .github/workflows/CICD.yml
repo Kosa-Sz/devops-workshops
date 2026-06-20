@@ -52,10 +52,10 @@ jobs:
 
       - name: Create function
         run: |
-          aws create-function \
+          aws create-functionn \
             --function-name Calculator-app \
-            --role arn:aws:iam::770762663048:role/GH_CICD
-            --runtime python3.12 \
+            --role arn:aws:iam::770762663048:role/GH_CICD \
+            --runtime python3.12
 
       - name: Zip Lambda function code
         run: |
