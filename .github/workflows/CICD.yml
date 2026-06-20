@@ -47,18 +47,12 @@ jobs:
             role-to-assume: arn:aws:iam::770762663048:role/GH_CICD
             aws-region: eu-central-1
 
-      - name: Deploy Lambda Function
-        uses: aws-actions/aws-lambda-deploy@v1.1.0
-        with:
-          function-name: Calculator
-          code-artifacts-dir: 01-ci-lab
-          handler: calculator.add
-          runtime: python3.12
+      - name: Zip Lambda function code
+        run: |
+          zip -r calc.zip app/calculator.py
 
-      - name: Deploy Lambda Function
-        uses: aws-actions/aws-lambda-deploy@v1.1.0
-        with:
-          function-name: Calculator
-          code-artifacts-dir: 01-ci-lab
-          handler: calculator.divide
-          runtime: python3.12
+      - name: Update Lambda function code
+        run: |
+          aws lambda update-function-code \
+            --function-name calculator-app \
+            --zip-file fileb://calc.zip
