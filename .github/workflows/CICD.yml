@@ -60,13 +60,9 @@ jobs:
           aws lambda create-function \
             --function-name Calculator-app \
             --role arn:aws:iam::770762663048:role/GH_CICD \
-            --runtime python3.12
-            --code function.zip
-
-      - name: Zip Lambda function code
-        run: |
-          cp app/calculator.py lambda_function.py
-          zip function.zip lambda_function.py
+            --runtime python3.12\
+            --handler calculator.lambda_handler \
+            --zip-file fileb://function.zip
 
       - name: Update Lambda function code
         run: |
