@@ -51,6 +51,14 @@ jobs:
         uses: aws-actions/aws-lambda-deploy@v1.1.0
         with:
           function-name: Calculator
-          code-artifacts-dir: app
+          code-artifacts-dir: 01-ci-lab/app
           handler: calculator.add
+          runtime: python3.12
+
+      - name: Deploy Lambda Function
+        uses: aws-actions/aws-lambda-deploy@v1.1.0
+        with:
+          function-name: Calculator
+          code-artifacts-dir: app
+          handler: calculator.divide
           runtime: python3.12
