@@ -48,7 +48,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v6
         with:
             role-to-assume: arn:aws:iam::770762663048:role/GH_CICD
-            aws-region: eu-central-1
+            aws-region: us-east-1
 
       - name: Zip Lambda function code
         run: |
