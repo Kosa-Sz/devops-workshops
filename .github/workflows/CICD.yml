@@ -20,4 +20,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Python script
-        run: python tests\test_calculator.py
+        run: python \test_calculator.py
