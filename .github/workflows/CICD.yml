@@ -61,12 +61,13 @@ jobs:
 
       - name: Create or update Lambda
         run: |
-          if aws lambda get-function --function-name  ${{ env.LAMBDA_NAME }} >/dev/null 2>&1 ; then
+          if aws lambda get-function --function-name  ${{ env.LAMBDA_NAME }} ./dev/null 2>&1 ; then
 
             aws lambda update-function-code \
               --function-name ${{ env.LAMBDA_NAME }} \
               --zip-file fileb://function.zip
-
+                
+                echo "Lambda updated!"
           else
 
             aws lambda create-function \
@@ -75,5 +76,6 @@ jobs:
               --role arn:aws:iam::770762663048:role/service-role/Calculator-app-role-jip0t845 \
               --handler calculator.lambda_handler \
               --runtime python3.13
+                echo "Lambda Created!"
 
           fi
